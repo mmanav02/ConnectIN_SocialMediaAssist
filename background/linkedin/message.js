@@ -1,7 +1,13 @@
 import * as L           from '../logger.js';
 
 function fillMessage(text) {
-  console.log("Here");
+  const proceed = window.confirm(
+      "Do you want to fill the following message automatically?\n"+"Message: "+text
+    );
+    if (!proceed) {
+      console.log("User declined to fill message.");
+      return;
+    }
   const btn = document.querySelector('button[aria-label^="Message"], a[href*="messaging?"]');
   if (!btn) {
     console.warn('Message button not found');
@@ -18,13 +24,7 @@ function fillMessage(text) {
   };
 
   waitBox(box => {
-    const proceed = window.confirm(
-      "Do you want to fill the following message automatically?\n"+"Message: "+text
-    );
-    if (!proceed) {
-      console.log("User declined to fill message.");
-      return;
-    }
+    
     box.focus();
     document.execCommand('selectAll', false, null);
     document.execCommand('insertText', false, text);
