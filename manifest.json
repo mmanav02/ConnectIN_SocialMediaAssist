@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "ConnectIN - Linkedin Message Assist",
+  "description": "Streaml Linkedin Message Assist",
+  "version": "0.1.2",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "LinkedIn AI Outreach"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage",
+    "activeTab",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background/index.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*",
+        "https://linkedin.com/*",
+        "https://app.streaml.app/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["https://app.streaml.app/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "personas.json"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "icons": {
+    "128": "icons/128.jpg"
+  }
+}

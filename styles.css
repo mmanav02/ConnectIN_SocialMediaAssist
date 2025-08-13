@@ -1,0 +1,89 @@
+/* ─── Base Layout ─── */
+body {
+  font: 14px/1.5 'Inter', system-ui, sans-serif;
+  background: #ffffff;
+  width: 300px;
+  margin: 16px auto;
+  padding: 20px;
+  color: #333;
+}
+h1 {
+  font-size: 16px; 
+  margin: 0 0 8px; 
+}
+
+/* Tabs */
+.tabs { display: flex; gap: 8px; margin-bottom: 8px; }
+/* ─── Buttons ─── */
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: #0a66c2;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: #004182;
+  transform: translateY(-1px);
+}
+button.tab { flex: 1; }
+button.is-active { background: #0a66c2; color: #fff; }
+
+/* ─── Logo & Branding ─── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Keep logo nicely contained in a 300px popup */
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Form */
+label { display: block; margin: 8px 0 4px; font-weight: 600; }
+textarea { width: 100%; box-sizing: border-box; padding: 6px 4px; border: 1px solid #ccc; border-radius: 4px; }
+
+/* Notes & Log */
+.muted { color: #666; margin: 6px 0; }
+.small { font-size: 12px; }
+/* ─── Logs ─── */
+pre#log {
+  height: 120px;
+  margin-top: 10px;
+  padding: 8px;
+  overflow: auto;
+  white-space: pre-wrap;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Visibility */
+[hidden] { display: none !important; }
+
+/* Optional: CSS-only visibility if you keep both blocks in DOM */
+:root[data-mode="open"]  #manual-ui { display: none !important; }
+:root[data-mode="open"]  #auto-block { display: block !important; }
+
+:root[data-mode="closed"] #manual-ui { display: block !important; }
+:root[data-mode="closed"] #auto-block { display: none !important; }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Streaml ConnectIN - Linkedin Assist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Logo Header -->
+  <div class="header" id="companylogo">
+    <img src="CompanyImage.png" alt="Streaml Logo" class="logo" />
+  </div>
+  <br>
+
+  <!-- Mode Toggle -->
+  <div class="row inline mode-row">
+    <button id="modeToggleBtn" type="button">Switch to Open</button>
+    <br>
+  </div>
+    <p id="modeLabel" class="muted">Current: Closed</p>
+
+      <!-- MANUAL-ONLY UI (hidden in automation mode via CSS) -->
+  <div id="manual-ui">
+    <p><strong>Closed Mode:</strong> No URLs being accepted</p>
+  </div>
+
+  <!-- Automation listening block (visible in automation mode) -->
+  <section id="auto-block">
+    <p><strong>Automation mode:</strong> waiting for URLs from Streaml…</p>
+    <p class="muted">When your website sends a trigger, you’ll see it logged below.</p>
+  </section>
+
+  <button id="downloadLog">Download logs</button>
+
+  <!-- Logs (always visible) -->
+  <pre id="log"></pre>
+  <button id="clearLog" type="button" title="Clear logs" class="clear-btn">Clear Log</button>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
