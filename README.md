@@ -67,4 +67,4 @@ MIT License - feel free to use, modify, and share!
 
 ---
 
-**Note**: This extension is not affiliated with LinkedIn, X (Twitter), or Streaml. It's a third-party tool designed to make your social media workflow a bit easier.
+**Note**: This extension is not affiliated with LinkedIn, X (Twitter). It's a third-party tool designed to make your social media workflow a bit easier.
