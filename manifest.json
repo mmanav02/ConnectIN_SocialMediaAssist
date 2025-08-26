@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Streaml ConnectIN - Linkedin Message Assist",
-  "description": "Streaml Linkedin Message Assist - Not affiliated with linkedin",
+  "name": "Streaml ConnectIN - Message Assist",
+  "description": "Streaml Social Media Message Assist - Not affiliated with linkedin or X",
   "version": "0.1.2",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "LinkedIn AI Outreach"
+    "default_title": "Social Media AI Outreach Assist"
   },
   "permissions": [
     "tabs",
@@ -15,7 +15,7 @@
   ],
   "host_permissions": [
     "https://www.linkedin.com/*",
-    "<all_urls>"
+    "https://www.x.com/*"
   ],
   "background": {
     "service_worker": "background/index.js",
@@ -27,7 +27,7 @@
         "https://www.linkedin.com/*",
         "https://linkedin.com/*",
         "https://app.streaml.app/*",
-        "<all_urls>"
+        "https://www.x.com/*"
       ],
       "js": [
         "content.js"
@@ -37,7 +37,7 @@
       "all_frames": true
     },
     {
-      "matches": ["https://app.streaml.app/*","<all_urls>"],
+      "matches": ["https://app.streaml.app/*"],
       "js": ["bridge.js"],
       "run_at": "document_start",
       "all_frames": true
