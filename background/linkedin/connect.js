@@ -58,6 +58,14 @@ export async function linkedInConnectionAssist({ profiles, delay, randomDelay, w
 async function sendLinkedInRequest(noteText) {
   const withNote = noteText && noteText.trim() !== '';
 
+  const proceed = window.confirm(
+      "Do you want to send connection request automatically?\n"+withNote
+    );
+    if (!proceed) {
+      console.log("User declined to fill message.");
+      return;
+  }
+
   // Utility functions (no changes needed here)
   const delay = ms => new Promise(r => setTimeout(r, ms));
   const waitFor = (sel, timeout = 7000) =>

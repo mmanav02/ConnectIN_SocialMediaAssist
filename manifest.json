@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Streaml ConnectIN - Message Assist",
   "description": "Streaml Social Media Message Assist - Not affiliated with linkedin or X",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Social Media AI Outreach Assist"
