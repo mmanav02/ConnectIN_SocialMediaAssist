@@ -37,7 +37,7 @@ function fillMessage(text) {
 export async function linkedinUrlsMessageAssist(
   { profiles, dryRun, delay, randomDelay, waitForTabLoad, persona }
 ) {
-  dryRun = 1
+  dryRun = 1;
   L.log(`DM run started, urls: ${profiles.length}`);
 
   for (const profile of profiles) {
@@ -52,7 +52,6 @@ export async function linkedinUrlsMessageAssist(
       await waitForTabLoad(id);
 
       L.log("📍Tab loaded...");
-
 
       await delay(randomDelay());
 
