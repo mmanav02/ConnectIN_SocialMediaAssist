@@ -1,70 +1,141 @@
-# Streaml ConnectIN - Your Social Media Outreach Assistant
+# Streaml ConnectIN - Social Media Outreach Assistant
 
-Hey there! 👋 This is ConnectIN, a Chrome extension that helps you manage your LinkedIn and X (Twitter) outreach without the robotic feel. Think of it as your personal assistant for social media networking.
+A powerful Chrome extension designed to streamline your social media outreach on LinkedIn and X (Twitter). ConnectIN integrates seamlessly with the Streaml platform to automate personalized messaging and connection requests while keeping you in full control.
 
-## What's This All About?
+## 🚀 Features
 
-ConnectIN works with Streaml to help you send personalized messages to LinkedIn profiles and X users. It can also send connection requests on LinkedIn. It's designed to be simple, safe, and actually useful - no AI-generated spam here!
+### LinkedIn Integration
+- **Automated Messaging**: Send personalized direct messages to LinkedIn profiles
+- **Connection Requests**: Automatically send connection requests with custom notes
+- **Smart Queue System**: Processes profiles in FIFO order with built-in delays
+- **User Confirmation**: Always asks for permission before taking action
 
-### Two Modes to Keep You in Control
+### X (Twitter) Integration
+- **Direct Messaging**: Send personalized DMs to Twitter/X profiles
+- **Profile Detection**: Automatically finds and opens DM interfaces
+- **Message Drafting**: Fills message content for your review before sending
 
-- **Open Mode**: Ready to help! When Streaml sends you profile URLs, ConnectIN will send your saved message or connection request to each one.
-- **Closed Mode**: Taking a break. All incoming requests are ignored, and any pending work gets cleared. Perfect for when you want to step back.
+### Control & Safety
+- **Open/Closed Modes**: Toggle between active and inactive states
+- **Manual Review**: Every action requires your confirmation
+- **Queue Management**: Built-in delays and error handling
+- **Logging System**: Track all activities with downloadable logs
 
-## How It Works (The Simple Version)
+## 🎯 How It Works
 
-1. **Set up your message**: Open the extension popup and write your default message in the Open section
-2. **Go live**: Switch the extension to Open mode
-3. **Let it work**: Streaml sends LinkedIn/X profile URLs to your extension
-4. **Review & send**: For each profile, ConnectIN opens the page, asks for your permission, and either:
-   - Sends your personalized message, or
-   - Sends a connection request with your note
+### Two Operating Modes
 
-When you're in Closed mode, everything stops - no surprises, no unwanted messages.
+- **Open Mode**: Active and ready to process requests from Streaml
+- **Closed Mode**: Inactive - ignores all incoming requests and clears pending work
 
-## Getting Started
+### Workflow Process
 
-### Installation (Developer Mode)
+1. **Setup**: Configure your extension in Open mode
+2. **Integration**: Streaml sends profile URLs and messages to the extension
+3. **Processing**: Extension opens each profile in a background tab
+4. **Confirmation**: Asks for your permission before taking action
+5. **Execution**: Sends messages or connection requests based on your approval
+6. **Cleanup**: Closes tabs and logs activities
 
-1. Download or clone this project to your computer
-2. Open Chrome and go to `chrome://extensions`
-3. Turn on **Developer mode** (toggle in the top-right corner)
+## 📋 Supported Actions
+
+### LinkedIn Features
+- **Send Messages**: Automatically fills and sends direct messages
+- **Send Connection Requests**: Sends connection requests with custom notes
+- **Profile Navigation**: Opens LinkedIn profiles in background tabs
+- **Modal Handling**: Manages LinkedIn's connection request modals
+
+### X (Twitter) Features
+- **Send DMs**: Automatically fills and sends direct messages
+- **Profile Navigation**: Opens Twitter/X profiles in background tabs
+- **DM Interface**: Handles Twitter's messaging interface
+
+## 🔧 Installation
+
+### Developer Mode Installation
+
+1. Download or clone this repository
+2. Open Chrome and navigate to `chrome://extensions`
+3. Enable **Developer mode** (toggle in top-right corner)
 4. Click **Load unpacked** and select this project folder
-5. Pin the extension to your toolbar for easy access (optional but recommended)
+5. Pin the extension to your toolbar for easy access
 
-## Behind the Scenes
+## 🔐 Permissions & Privacy
 
-Here's what happens when ConnectIN is working:
+### Required Permissions
 
-- It only accepts messages when you're in Open mode
-- Uses a simple queue system (first in, first out) for incoming URLs
-- Double-checks your mode before each send - if you've switched to Closed, it stops everything
-- Opens each profile in a background tab, waits for it to load, then:
-  - Asks for your permission before taking action
-  - Either sends your message or connection request based on what Streaml requests
-  - For messages: finds and clicks the Message button, types your message, and sends it
-  - For connections: clicks Connect, adds your note, and sends the request
+- **`scripting`**: Required to inject scripts into LinkedIn and X pages for automation
+- **`storage`**: Stores your mode preferences and settings locally
+- **`downloads`**: Enables log file downloads for activity tracking
 
-## Privacy & Permissions
+### Host Permissions
 
-We keep it minimal and focused:
+- **`https://www.linkedin.com/*`**: Access LinkedIn for messaging and connection features
+- **`*://x.com/*`**: Access X (Twitter) for direct messaging
+- **`*://twitter.com/*`**: Access Twitter legacy URLs for direct messaging
+- **`https://app.streaml.app/*`**: Integration with Streaml platform
 
-- **tabs, scripting, activeTab**: Needed to open profile pages and send messages/requests
-- **storage**: Saves your mode preference and default message
-- **LinkedIn & X only**: The extension only works on `linkedin.com` and `x.com` - no other sites
+### Content Scripts
 
-## Why This Exists
+- **LinkedIn Pages**: Injects scripts for profile interaction
+- **X/Twitter Pages**: Handles direct messaging functionality
+- **Streaml App**: Bridge communication between Streaml and extension
 
-Social media outreach can be time-consuming and repetitive. ConnectIN is here to help you:
-- Save time on routine networking
-- Keep your outreach organized
-- Stay in control of your messaging and connection requests
-- Work seamlessly with Streaml
+## 🛡️ Safety & Control Features
 
-## License
+- **User Confirmation**: Every action requires explicit user approval
+- **Mode Toggle**: Easy switch between active and inactive states
+- **Queue Management**: Processes requests one at a time with delays
+- **Error Handling**: Graceful handling of failed operations
+- **Activity Logging**: Complete audit trail of all actions
+
+## 🔄 Integration with Streaml
+
+This extension is specifically designed to work with the **app.streaml.app** platform:
+
+- Receives profile URLs and messages from Streaml
+- Processes LinkedIn and X profiles automatically
+- Sends back status updates and completion confirmations
+- Maintains queue of pending operations
+
+## 📊 Technical Details
+
+### Architecture
+- **Manifest V3**: Uses latest Chrome extension standards
+- **Service Worker**: Background processing for queue management
+- **Content Scripts**: Page interaction and automation
+- **Message Passing**: Secure communication between components
+
+### Queue System
+- **FIFO Processing**: First-in, first-out queue management
+- **Random Delays**: Built-in delays to avoid detection
+- **Error Recovery**: Continues processing even if individual operations fail
+- **Status Tracking**: Real-time status updates and logging
+
+## ⚠️ Important Disclaimers
+
+### Third-Party Tool
+This extension is **NOT affiliated with LinkedIn, X (Twitter), or Meta**. It is an independent third-party tool designed to enhance your social media workflow.
+
+### Platform Integration
+This extension is specifically created for use with the **app.streaml.app** website and platform. It is designed to integrate seamlessly with Streaml's social media management features.
+
+### Responsible Use
+- Always review messages before sending
+- Respect platform terms of service
+- Use appropriate delays between actions
+- Monitor your activity to avoid spam detection
+
+## 📝 License
 
 MIT License - feel free to use, modify, and share!
 
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
 ---
 
-**Note**: This extension is not affiliated with LinkedIn, X (Twitter). It's a third-party tool designed to make your social media workflow a bit easier.
+**Version**: 0.1.3  
+**Compatibility**: Chrome Extensions Manifest V3  
+**Platform**: Designed for app.streaml.app integration
