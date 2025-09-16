@@ -59,7 +59,7 @@ async function sendLinkedInRequest(noteText) {
   const withNote = noteText && noteText.trim() !== '';
 
   const proceed = window.confirm(
-      "Do you want to send connection request automatically?\n"+withNote
+      "Do you want to send connection request automatically?\n"+noteText
     );
     if (!proceed) {
       console.log("User declined to fill message.");

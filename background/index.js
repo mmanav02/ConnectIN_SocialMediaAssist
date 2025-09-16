@@ -23,26 +23,30 @@ const q  = [];
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "FROM_CONTENT") {
     console.log("Received from content:", message.payload);
-    L.log('job enqueued, size: ',message.payload.data.length);
-    q.push(message.payload.data);
+    // L.log('job enqueued, size: ',message.payload.data.length);
+    const data = message.payload;
+    q.push(data);
     if (!busy) drainReceivedUrls();
   }
 });
 
 async function drainReceivedUrls() {
   busy = true;
-  L.log('drain started');
+  L.log('drain started, length', q.length);
   while (q.length) {
+    console.log("Queue before",q);
+    console.log("Q Length:",q.length);
     const msg = q.shift();
+    console.log("Q Length:",q.length);
     try {
       const dryRun = 1;
       const persona = msg.persona;
-      const platform = msg[0].platform;
-      const purpose = (msg && msg[0] && msg[0].purpose) || 'No purpose specified';
+      const platform = msg.platform;
+      const purpose = msg.purpose || 'No purpose specified';
       if(platform==="linkedin"){
         if(purpose==="send-connection"){
           await linkedInConnectionAssist({
-            profiles: msg, 
+            profiles: msg.data, 
             delay, 
             randomDelay, 
             waitForTabLoad
@@ -50,7 +54,7 @@ async function drainReceivedUrls() {
         }
         else if(purpose==='message'){
           await linkedinUrlsMessageAssist({
-            profiles: msg, 
+            profiles: msg.linkedin_data, 
             dryRun, 
             delay, 
             randomDelay, 
@@ -60,8 +64,10 @@ async function drainReceivedUrls() {
       }
       else if(platform==="twitter"){
         L.log("Calling Twitter Assist");
+        L.log("msg:",msg);
+        L.log("Twitter Data:",msg.data);
         await twitterUrlsMessageAssist({
-          profiles: msg,
+          profiles: msg.data,
           dryRun,
           delay,
           randomDelay,
@@ -69,6 +75,8 @@ async function drainReceivedUrls() {
           persona
         })
       }
+    console.log("Queue after",q);
+
 
     } catch (e) {
       L.error('runner error:', e.message || e);
