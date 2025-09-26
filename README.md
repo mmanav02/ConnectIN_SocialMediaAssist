@@ -1,6 +1,6 @@
 # Streaml ConnectIN - Social Media Outreach Assistant
 
-A powerful Chrome extension designed to streamline your social media outreach on LinkedIn and X (Twitter). ConnectIN integrates seamlessly with the Streaml platform to automate personalized messaging and connection requests while keeping you in full control.
+A powerful Chrome extension designed to streamline your social media outreach on LinkedIn, X (Twitter), and Instagram. ConnectIN integrates seamlessly with the Streaml platform to automate personalized messaging and connection requests while keeping you in full control.
 
 ## 🚀 Features
 
@@ -12,6 +12,11 @@ A powerful Chrome extension designed to streamline your social media outreach on
 
 ### X (Twitter) Integration
 - **Direct Messaging**: Send personalized DMs to Twitter/X profiles
+- **Profile Detection**: Automatically finds and opens DM interfaces
+- **Message Drafting**: Fills message content for your review before sending
+
+### Instagram Integration
+- **Direct Messaging**: Send personalized DMs to Instagram profiles
 - **Profile Detection**: Automatically finds and opens DM interfaces
 - **Message Drafting**: Fills message content for your review before sending
 
@@ -50,6 +55,11 @@ A powerful Chrome extension designed to streamline your social media outreach on
 - **Profile Navigation**: Opens Twitter/X profiles in background tabs
 - **DM Interface**: Handles Twitter's messaging interface
 
+### Instagram Features
+- **Send DMs**: Automatically fills and sends direct messages
+- **Profile Navigation**: Opens Instagram profiles in background tabs
+- **DM Interface**: Handles Instagram's messaging interface
+
 ## 🔧 Installation
 
 ### Developer Mode Installation
@@ -64,7 +74,7 @@ A powerful Chrome extension designed to streamline your social media outreach on
 
 ### Required Permissions
 
-- **`scripting`**: Required to inject scripts into LinkedIn and X pages for automation
+- **`scripting`**: Required to inject scripts into LinkedIn, X, and Instagram pages for automation
 - **`storage`**: Stores your mode preferences and settings locally
 - **`downloads`**: Enables log file downloads for activity tracking
 
@@ -73,12 +83,14 @@ A powerful Chrome extension designed to streamline your social media outreach on
 - **`https://www.linkedin.com/*`**: Access LinkedIn for messaging and connection features
 - **`*://x.com/*`**: Access X (Twitter) for direct messaging
 - **`*://twitter.com/*`**: Access Twitter legacy URLs for direct messaging
+- **`*://instagram.com/*`**: Access Instagram for direct messaging
 - **`https://app.streaml.app/*`**: Integration with Streaml platform
 
 ### Content Scripts
 
 - **LinkedIn Pages**: Injects scripts for profile interaction
 - **X/Twitter Pages**: Handles direct messaging functionality
+- **Instagram Pages**: Handles direct messaging functionality
 - **Streaml App**: Bridge communication between Streaml and extension
 
 ## 🛡️ Safety & Control Features
@@ -94,7 +106,7 @@ A powerful Chrome extension designed to streamline your social media outreach on
 This extension is specifically designed to work with the **app.streaml.app** platform:
 
 - Receives profile URLs and messages from Streaml
-- Processes LinkedIn and X profiles automatically
+- Processes LinkedIn, X, and Instagram profiles automatically
 - Sends back status updates and completion confirmations
 - Maintains queue of pending operations
 
@@ -115,7 +127,7 @@ This extension is specifically designed to work with the **app.streaml.app** pla
 ## ⚠️ Important Disclaimers
 
 ### Third-Party Tool
-This extension is **NOT affiliated with LinkedIn, X (Twitter), or Meta**. It is an independent third-party tool designed to enhance your social media workflow.
+This extension is **NOT affiliated with LinkedIn, X (Twitter), Instagram, or Meta**. It is an independent third-party tool designed to enhance your social media workflow.
 
 ### Platform Integration
 This extension is specifically created for use with the **app.streaml.app** website and platform. It is designed to integrate seamlessly with Streaml's social media management features.
