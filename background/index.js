@@ -1,9 +1,39 @@
 /* ───────────────────────────── imports ───────────────────────────── */
 import { delay, randomDelay, waitForTabLoad } from './utils.js';
 import * as L                                 from './logger.js';
+
+chrome.runtime.onMessage.addListener((msg, _src, sendResponse) => {
+  try {
+    if (msg?.cmd === 'downloadLog') {
+      L.downloadLog();
+      sendResponse({ ok: true });
+      return; // sync response is fine
+    }
+    if (msg?.cmd === 'dumpLog') {
+      sendResponse({ lines: L.dumpLog() });
+      return; // sync response is fine
+    }
+    if (msg?.type === 'LOG' && msg?.message) {
+      L.log(msg.message);
+      sendResponse({ ok: true });
+      return; // sync response is fine
+    }
+  } catch (e) {
+    // Always respond so the port doesn't hang/close
+    sendResponse({ ok: false, error: String(e) });
+  }
+});
+
+chrome.runtime.onConnect.addListener(port => {
+  if (port.name === 'log-stream') {
+    L.addListener(port); // this will postMessage({type:'LOG_LINE', line})
+  }
+});
+
 import { linkedinUrlsMessageAssist }      from './linkedin/message.js';
 import { twitterUrlsMessageAssist } from './twitter/message.js'
 import { linkedInConnectionAssist } from './linkedin/connect.js';
+import { instagramMessageAssist } from './instagram/message.js';
 
 const { downloadLog } = L;
 
@@ -25,7 +55,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("Received from content:", message.payload);
     // L.log('job enqueued, size: ',message.payload.data.length);
     const data = message.payload;
+    console.log("data:",data);
     q.push(data);
+    console.log("Queue before starting the drain:",q);
     if (!busy) drainReceivedUrls();
   }
 });
@@ -75,6 +107,15 @@ async function drainReceivedUrls() {
           persona
         })
       }
+      else if(platform==="instagram"){
+        L.log("Calling Instagram Assist");
+        await instagramMessageAssist({
+          profiles: msg.data,
+          delay,
+          randomDelay,
+          waitForTabLoad
+        })
+      }
     console.log("Queue after",q);
 
 
@@ -86,9 +127,10 @@ async function drainReceivedUrls() {
   L.log('drain finished');
 }
 
-// for logging outside
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (msg?.type === 'LOG') {
-    L.log(msg.message);
-  }
-});
+// // for logging outside
+// chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+//   if (msg?.type === 'LOG') {
+//     L.log(msg.message);
+//   }
+// });
+

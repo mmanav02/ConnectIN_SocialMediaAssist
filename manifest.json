@@ -14,8 +14,9 @@
   ],
   "host_permissions": [
     "https://www.linkedin.com/*",
-    "*://x.com/*",
-    "*://twitter.com/*"
+    "*://*.x.com/*",
+    "*://*.twitter.com/*",
+    "*://*.instagram.com/*"
   ],
   "background": {
     "service_worker": "background/index.js",
@@ -27,7 +28,9 @@
         "https://www.linkedin.com/*",
         "https://linkedin.com/*",
         "https://app.streaml.app/*",
-        "https://www.x.com/*"
+        "https://www.x.com/*",
+        "https://*.instagram.com/*",
+        "<all_urls>"
       ],
       "js": [
         "content.js"
@@ -37,7 +40,7 @@
       "all_frames": true
     },
     {
-      "matches": ["https://app.streaml.app/*"],
+      "matches": ["https://app.streaml.app/*", "<all_urls>"],
       "js": ["bridge.js"],
       "run_at": "document_start",
       "all_frames": true

@@ -1,4 +1,5 @@
 const buf = [];
+const listeners = new Set();
 
 /* prepend timestamp */
 const ts = () => new Date().toISOString().replace('T', ' ').slice(0, 19);
@@ -18,12 +19,39 @@ export function downloadLog() {
   });
 }
 
+// Allow popup to get whole buffer at once
+export function dumpLog() {
+  return [...buf];
+}
+
+// Allow popup to subscribe for live lines (via Port)
+export function addListener(port) {
+  listeners.add(port);
+  port.onDisconnect.addListener(() => listeners.delete(port));
+}
+
 /* internal helper */
+// function add(prefix, ...args) {
+//   const line = `${ts()}  ${prefix}  ${args.map(a =>
+//                  typeof a === 'object' ? JSON.stringify(a) : String(a)
+//                ).join(' ')}`;
+//   buf.push(line);
+//   console[prefix.trim().toLowerCase()](...args);
+//   if (buf.length > 5000) buf.shift();
+// }
+
+ /* internal helper */
 function add(prefix, ...args) {
   const line = `${ts()}  ${prefix}  ${args.map(a =>
-                 typeof a === 'object' ? JSON.stringify(a) : String(a)
-               ).join(' ')}`;
+    typeof a === 'object' ? JSON.stringify(a) : String(a)
+  ).join(' ')}`;
+
   buf.push(line);
   console[prefix.trim().toLowerCase()](...args);
   if (buf.length > 5000) buf.shift();
+
+  // Broadcast to live listeners
+  for (const port of listeners) {
+    try { port.postMessage({ type: 'LOG_LINE', line }); } catch { /* ignore */ }
+  }
 }
